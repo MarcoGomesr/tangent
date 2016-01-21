@@ -1,34 +1,99 @@
 include _partials/header.jade
 body
-	header
-		.container
+	.container
+		header(role="banner")
 			.row
 				//- logo
-				.col-md-4.logo
-					img(src="img/logo.png")
+				.col-md-2.logo
+					img(src="img/logo.jpg")
 
 				//- search
-				.col-md-4.col-md-offset-4.search
-					form(action="#")
-						input(type="text",)
+				.col-md-2.col-md-offset-8
+					form(action="#",class="search")
+						input(type="text", placeholder="Enter search term...")						
 				
-				.col-md-12
-					nav
-						ul
-							li
-								a(href='#') Home
-							li
-								a(href='#') Books
-							li
-								a(href='#') Poetry
-	.content
-		.container
+		nav
 			.row
-				aside			
-					.cat
+				.col-md-12
+					ul.list-inline.breadcrumbs
+						li
+							a(href='#', class="breadcrumbs__item") Home
+						| >
+						li
+							a(href='#', class="breadcrumbs__item") Books
+						| >
+						li
+							a(href='#', class="breadcrumbs__item") Poetry
+						| >
+						li.breadcrumbs__item--active Nam posuere turpis
+						
+		.content
+			.row
+				aside.col-md-2
+					dl
+						mixin cat(...items)
+							dd
+								each item in items
+									p=item 				    
+						dt Books
+						+cat('Fiction', 'Poetry', 'Performand Arts')
+						dt Author
+						+cat('Fiction', 'Poetry', 'Performand Arts')
+						dt Finds
+						+cat('Fiction', 'Poetry', 'Performand Arts')
+						dt Book Clud
+						+cat('Fiction', 'Poetry', 'Performand Arts')
 
-				section
-					img(src="img/contentimg.jpg", alt="")
-				aside
+
+				section.col-md-8
+					.row
+						.col-md-4
+							figure
+								img(src="img/contentimg.jpg", alt="")
+								figcaption.text-center Click for full size version
+						.col-md-8
+							h2.title Nam posuere turpis
+							h4 Leo Semper
+							p
+								| Enean mauris dui, sodales vel, viverra id, pulvinar nec, augue. Cum sociis natoque penatibus et magnis dis parturient montes, 
+								| nascetur ridiculus mus. Quisque magna odio, fringilla vitae, tempus eget, cursus in, dolor. Mauris lorem nibh, volutpat a, ultrices 
+								| et, nonummy ut, ligula. Nam ac enim nunc ultrices feugiat. In hac habitasse platea dictumst. 
+							p
+								|Curabitur nulla nibh, placerat sed sollicitudin in, consectetur sit amet dui. Nulla scelerisque tortor sed felis dignissim
+								|scelerisque. In vehicula iaculis ante id adipiscing. In arcu dolor, rutrum nec pretium non, feugiat id metus. Phasellus diam felis,
+								|volutpat sit amet scelerisque non.
+							p
+								|Quisque semper augue erat, vel consequat ligula. Donec quis lectus sit ameteu leo iaculis suscipit.
+				aside.col-md-2
+					.offer			
+						h2.offer__tittle.text-center £10.79					
+						button.offer__button
+							|Add to basket						
+						.offer__content
+							mixin details(title, name)
+								p
+									span= title
+									|:&nbsp;
+									=name
+									
+
+							+details('Edition', 'Hardback')
+							+details('ISBN','01214564646')
+							+details('Published','02.08.2001')
+							+details('Nº of pages','312')
+							+details('Age rating', '11+')
+		footer
+			ul.list-inline.footer
+				li
+					a(href="#", class="footer__link")
+						|Sitemap
+					| |
+				li
+					a(href="#", class="footer__link")
+						|Terms & Conditions
+					| |
+				li
+					a(href="#", class="footer__link")
+						|Privacy					
 
 include _partials/footer.jade
